@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¿Quieres jugar un rato?</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+            background-color: #f0f0f0;
+            margin: 0;
+            height: 100vh; /* Asegura que el body ocupe toda la altura de la pantalla */
+            overflow: hidden; /* Evita que el scroll aparezca */
+        }
+
+        h1 {
+            font-size: 36px;
+            margin-bottom: 50px;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+        }
+
+        .button {
+            padding: 20px 40px;
+            font-size: 20px;
+            border: 2px solid #333;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        #yes {
+            background-color: #4CAF50; /* Verde */
+            color: white;
+        }
+
+        #no {
+            background-color: #f44336; /* Rojo */
+            color: white;
+            position: absolute; /* Usamos posición absoluta para el movimiento */
+        }
+
+        #message {
+            font-size: 20px;
+            color: #333;
+            margin-top: 30px;
+            font-family: "Comic Sans MS", sans-serif;
+            text-align: center;
+            display: none; /* Al principio el mensaje estará oculto */
+        }
+
+        #yesMessage {
+            font-size: 20px;
+            color: #333;
+            margin-top: 30px;
+            font-family: "Comic Sans MS", sans-serif;
+            text-align: center;
+            display: none; /* Al principio el mensaje estará oculto */
+        }
+
+    </style>
+</head>
+<body>
+    <h1>¿quieres jugar un rato?</h1>
+    <div class="button-container">
+        <!-- Botones Sí y No -->
+        <button id="yes" class="button">Sí</button>
+        <button id="no" class="button">No</button>
+    </div>
+    <div id="message"></div> <!-- Contenedor para el mensaje de "No" -->
+    <div id="yesMessage"></div> <!-- Contenedor para el mensaje de "Sí" -->
+
+    <script>
+        const yesButton = document.getElementById('yes');
+        const noButton = document.getElementById('no');
+        const message = document.getElementById('message');
+        const yesMessage = document.getElementById('yesMessage');
+
+        // Cuando se hace clic en el botón "Sí"
+        yesButton.addEventListener('click', function() {
+            // Mostrar el mensaje divertido para "Sí"
+            yesMessage.innerHTML = "¡Jajaja! ¡Sabía que dirías que sí! por que no podias decir no, ¿ tu que dices? ¡Quizás lo hice solo para hacerte reír pero si tengo un sentimiento AMOR A PRIMERA VISTA COMO TE DIJE! XD";
+            yesMessage.style.display = "block"; // Hacer visible el mensaje
+            yesButton.style.display = "none"; // Esconde el botón "Sí" después de hacer clic
+        });
+
+        // Mover el botón "No" dentro de la pantalla
+        noButton.addEventListener('mouseover', function() {
+            const maxX = window.innerWidth - noButton.offsetWidth - 20; // Área de movimiento (evita que se salga por los bordes)
+            const maxY = window.innerHeight - noButton.offsetHeight - 20; // Similar para el eje Y
+
+            // Generar posiciones aleatorias dentro de esos límites
+            const randomX = Math.random() * maxX;
+            const randomY = Math.random() * maxY;
+
+            // Mover el botón a la nueva posición
+            noButton.style.left = `${randomX}px`;
+            noButton.style.top = `${randomY}px`;
+        });
+
+        // Cuando se hace clic en el botón "No"
+        noButton.addEventListener('click', function() {
+            // Mostrar el mensaje divertido para "No"
+            message.innerHTML = "jajajjajajaja tanta sufriste pero bueno lo lograste, pero será que sí lo lograste jajaja en fin, tú qué decides, solo lo hice para que te diviertas XD";
+            message.style.display = "block"; // Hacer visible el mensaje
+            noButton.style.display = "none"; // Esconde el botón "No" después de hacer clic
+        });
+    </script>
+</body>
+</html>
